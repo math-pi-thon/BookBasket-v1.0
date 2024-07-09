@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='logo.png') }}" height="30"> BookBasket </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard#sections">Sections</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard#my_books">My Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard#my_requests">Requests</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+            <form class="d-flex " action="{{ url_for('search') }}" method="GET">
+                <input class="form-control me-2 input-group-append" type="search" placeholder="Search" aria-label="Search" name="query">
+                <select class="form-select me-2 input-group-append" name="search_type" style="width: 150px;">
+                    <option value="books">Books</option>
+                    <option value="sections">Sections</option>
+                </select>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>

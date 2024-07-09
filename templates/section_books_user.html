@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>{{ section.name }} Books</title>
+
+<style>
+    .card-link {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+{% include "navbar2.html" %}
+
+<div class="container mt-4">
+    <h2>{{ section.name }} Books</h2>
+    <p>{{ section.description }}</p>
+    <hr>
+    {% if books %}
+        <div class="row">
+            {% for book in books %}
+                <div class=" col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="row h-100">
+                                <div class="col-sm-4">
+                                    <img src="{{ url_for('static', filename=book.cover_path[7:]) }}" class="card-img-top" alt="Book Cover">
+                                </div>
+                                <div class="col-sm-8 d-flex flex-column">
+                                    <h5 class="card-title">{{ book.title }}</h5>
+                                    <div class="card-text m-2"> Author: {{ book.author }} </div>
+                                    {% if book.section_id %}
+                                        <div class="card-text m-2"> Section: {{ book.section.name }} </div>
+                                    {% endif %}
+                                    {% if book.description %}
+                                        <div class="card-text m-2"> Description: {{ book.description }} </div>
+                                    {% endif %}
+                                    <div class="card-text m-2"> Date Added: {{ book.date_added.strftime('%d-%m-%Y') }}, {{ book.date_added.strftime('%H:%M:%S') }} </div>
+                                    {% if book.rating != 0 %}
+                                        <div class="card-text m-2"> Rating: {{ book.rating }} </div>
+                                    {% endif %}
+                                    <div class="card-text mt-auto text-center">
+                                        <form method="POST" action="{{ url_for('request_book') }}">
+                                            <input type="hidden" name="book_id" value="{{ book._id }}">
+                                            <button type="submit" class="btn btn-primary">Request</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No books found for this section.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

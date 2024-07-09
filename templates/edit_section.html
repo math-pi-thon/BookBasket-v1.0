@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Edit Section</title>
+{% endblock %}
+
+{% block body %}
+
+{% include "navbar3.html" %}
+
+<div class="container mt-5">
+    <h2>Edit Section</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="name">Section Name:</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ section.name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" id="description" name="description" rows="4">{{ section.description }}</textarea>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="col text-end">
+                <a href="{{ url_for('librarian') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </div>
+        
+    </form>
+</div>
+
+{% endblock %}

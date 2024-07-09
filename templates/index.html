@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>BookBasket</title>
+{% endblock %}
+
+{% block body %}
+{% include "navbar1.html" %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Welcome to BookBasket</h1>
+            <p class="lead">Your online destination for discovering and reading books.</p>
+            <p>Explore our extensive collection of books, ranging from bestsellers to classics, across various genres.</p>
+            <a href="/login" class="btn btn-outline-warning"> Get Started </a>
+        </div>
+        <div class="col-md-6">
+            <img src="{{ url_for('static', filename='people-working-1.png') }}" class="img-fluid" alt="Library">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
